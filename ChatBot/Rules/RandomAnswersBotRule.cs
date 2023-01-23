@@ -22,7 +22,7 @@ namespace QXS.ChatBot
             : base(name, Weight, messagePattern)
         {
             this._messages = messages;
-            this._Process = this.SendRandomMessage;
+            this._process = this.SendRandomMessage;
         }
 
         /// <summary>

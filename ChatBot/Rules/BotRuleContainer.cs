@@ -25,7 +25,7 @@ namespace QXS.ChatBot
 
         }
 
-        protected SortedList<int, List<BotRule>> _NestedBotRules = new SortedList<int, List<BotRule>>(new DescComparer<int>());
-        public SortedList<int, List<BotRule>> NestedBotRules { get { return _NestedBotRules; } }
+        protected SortedList<int, List<BotRule>> _nestedBotRules = new SortedList<int, List<BotRule>>(new DescComparer<int>());
+        public SortedList<int, List<BotRule>> NestedBotRules { get { return _nestedBotRules; } }
     }
 }

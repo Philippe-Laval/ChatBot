@@ -22,14 +22,14 @@ namespace QXS.ChatBot
             ContainsValueIgnoreCase,
         }
 
-        protected IEnumerable<Tuple<string, Operator, string>> _Conditions;
+        protected IEnumerable<Tuple<string, Operator, string>> _conditions;
         //protected SortedList<int, List<BotRule>> _BotRules = new SortedList<int, List<BotRule>>(new DescComparer<int>());
 
         public ConditionBotRule(string Name, int Weight, IEnumerable<Tuple<string, Operator, string>> Conditions, IEnumerable<BotRule> Rules)
             : base(Name, Weight)
         {
-            this._MessagePattern = new Regex("^.*$");
-            this._Conditions = Conditions;
+            this._messagePattern = new Regex("^.*$");
+            this._conditions = Conditions;
             Dictionary<string, bool> ruleNames = new Dictionary<string, bool>();
             foreach (BotRule rule in Rules)
             {
@@ -46,19 +46,19 @@ namespace QXS.ChatBot
                     throw new ArgumentException("Names are not unique. Duplicate key found for rule name \"" + rule.Name + "\".", "Rules");
                 }
                 ruleNames[rule.Name] = true;
-                if (!this._NestedBotRules.ContainsKey(rule.Weight))
+                if (!this._nestedBotRules.ContainsKey(rule.Weight))
                 {
-                    this._NestedBotRules[rule.Weight] = new List<BotRule>();
+                    this._nestedBotRules[rule.Weight] = new List<BotRule>();
                 }
-                this._NestedBotRules[rule.Weight].Add(rule);
+                this._nestedBotRules[rule.Weight].Add(rule);
             }
 
-            this._Process = this.ProcessSubrules;
+            this._process = this.ProcessSubrules;
         }
 
         public string ProcessSubrules(Match match, IChatSessionInterface session)
         {
-            foreach (Tuple<string, Operator, string> condition in this._Conditions)
+            foreach (Tuple<string, Operator, string> condition in this._conditions)
             {
                 if (!session.SessionStorage.Values.ContainsKey(condition.Item1))
                 {
@@ -111,7 +111,7 @@ namespace QXS.ChatBot
                 }
             }
 
-            foreach (List<BotRule> rules in this._NestedBotRules.Values)
+            foreach (List<BotRule> rules in this._nestedBotRules.Values)
             {
                 foreach (BotRule rule in rules)
                 {

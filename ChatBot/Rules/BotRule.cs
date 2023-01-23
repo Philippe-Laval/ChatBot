@@ -18,8 +18,8 @@ namespace QXS.ChatBot
                 throw new ArgumentException("Name is null.", nameof(Name));
             }
 
-            this._Name = Name;
-            this._Weight = Weight;
+            this._name = Name;
+            this._weight = Weight;
         }
 
         protected BotRule(string Name, int Weight, Regex MessagePattern)
@@ -29,7 +29,7 @@ namespace QXS.ChatBot
             {
                 throw new ArgumentException("MessagePattern is null.", nameof(MessagePattern));
             }
-            this._MessagePattern = MessagePattern;
+            this._messagePattern = MessagePattern;
         }
 
 
@@ -40,20 +40,21 @@ namespace QXS.ChatBot
             {
                 throw new ArgumentException("Process is null.", nameof(Process));
             }
-            this._Process = Process;
+            this._process = Process;
         }
 
-        protected string _Name;
-        public string Name { get { return _Name; } }
+        protected string _name;
+        public string Name { get { return _name; } }
 
-        protected int _Weight;
-        public int Weight { get { return _Weight; } }
+        protected int _weight;
+        public int Weight { get { return _weight; } }
 
-        protected Regex _MessagePattern;
-        public Regex MessagePattern { get { return _MessagePattern; } }
+        protected Regex _messagePattern;
+        public Regex MessagePattern { get { return _messagePattern; } }
 
-        protected Func<Match, IChatSessionInterface, string> _Process;
-        public Func<Match, IChatSessionInterface, string> Process { get { return _Process; } }
+        protected Func<Match, IChatSessionInterface, string> _process;
+
+        public Func<Match, IChatSessionInterface, string> Process { get { return _process; } }
 
         public static BotRule CreateRuleFromXml(ChatBotRuleGenerator generator, XmlNode node)
         {

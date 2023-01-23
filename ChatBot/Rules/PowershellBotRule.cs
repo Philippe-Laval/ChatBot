@@ -22,7 +22,7 @@ namespace QXS.ChatBot
             : base(name, weight, messagePattern)
         {
             this._script = script;
-            this._Process = this.ProcessScript;
+            this._process = this.ProcessScript;
         }
 
         public PowershellBotRule(string name, int weight, Regex messagePattern, string script, bool showErrors)

@@ -31,14 +31,14 @@ namespace QXS.ChatBot
             : base(Name, Weight, MessagePattern)
         {
             this._Replacements = new string[] { Replacement };
-            this._Process = this.ReplaceMessage;
+            this._process = this.ReplaceMessage;
         }
 
         public ReplacementBotRule(string Name, int Weight, Regex MessagePattern, string[] Replacements)
             : base(Name, Weight, MessagePattern)
         {
             this._Replacements = Replacements;
-            this._Process = this.ReplaceMessage;
+            this._process = this.ReplaceMessage;
         }
 
         public string ReplaceMessage(Match match, IChatSessionInterface session)
